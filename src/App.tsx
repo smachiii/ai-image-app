@@ -11,6 +11,7 @@ import {
   TextField,
 } from "@mui/material";
 import { css } from "@emotion/react";
+import { bp } from "./utils/mediaQueries";
 
 const API_URL = "https://api.openai.com/v1/";
 const API_KEY = "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";
@@ -71,7 +72,10 @@ export const App = () => {
   return (
     <Container css={containerStyles}>
       <Box css={contentsWrapperStyles} width="100%">
-        <Stack spacing={2} direction={{ xs: "column", sm: "row" }}>
+        <Stack
+          spacing={{ xs: 1, sm: 2 }}
+          direction={{ xs: "column", sm: "row" }}
+        >
           <TextField
             label="プロンプト"
             value={prompt}
@@ -80,7 +84,7 @@ export const App = () => {
               setPrompt(e.target.value);
             }}
           />
-          <Stack spacing={2} direction="row">
+          <Stack spacing={{ xs: 1, sm: 2 }} direction="row">
             <Select
               value={generateSize}
               onChange={(e) => setGenerateSize(e.target.value as GenerateSize)}
@@ -133,17 +137,29 @@ export const App = () => {
 };
 
 const containerStyles = css`
-  padding: 32px;
+  padding: 16px;
   display: flex;
   min-height: 100vh;
+  ${bp.sm} {
+    padding: 24px;
+  }
+  ${bp.md} {
+    padding: 32px;
+  }
 `;
 
 const contentsWrapperStyles = css`
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.08);
-  padding: 24px;
+  padding: 16px;
   flex: 1;
+  ${bp.sm} {
+    padding: 24px;
+  }
+  ${bp.md} {
+    padding: 32px;
+  }
 `;
 
 const buttonStyles = css`
