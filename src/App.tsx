@@ -12,9 +12,7 @@ import {
 } from "@mui/material";
 import { css } from "@emotion/react";
 import { bp } from "./utils/mediaQueries";
-
-const API_URL = "https://api.openai.com/v1/";
-const API_KEY = "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";
+import { API_KEY, API_URL } from "./utils/api";
 
 type Format = "url" | "b64_json";
 type GenerateSize = "256x256" | "512x512" | "1024x1024";
