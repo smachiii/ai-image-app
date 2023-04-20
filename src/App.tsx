@@ -12,7 +12,6 @@ import {
 } from "@mui/material";
 import { css } from "@emotion/react";
 import { bp } from "./utils/mediaQueries";
-import { API_KEY, API_URL } from "./utils/api";
 
 type Format = "url" | "b64_json";
 type GenerateSize = "256x256" | "512x512" | "1024x1024";
@@ -38,7 +37,7 @@ export const App = () => {
 
     try {
       const response = await axios.post(
-        `${API_URL}images/generations`,
+        `${process.env.REACT_APP_API_URL}images/generations`,
         {
           prompt,
           n: 1,
@@ -48,7 +47,7 @@ export const App = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
+            Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,
           },
         }
       );
