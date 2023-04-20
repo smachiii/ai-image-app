@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -66,6 +66,12 @@ export const App = () => {
     );
   }, [generateSize, imageSize]);
 
+  const replaceImageSource = useMemo(() => {
+    const b64_json = `data:image/png;base64,${imageData}`;
+
+    return format === "b64_json" ? b64_json : imageData;
+  }, [format, imageData]);
+
   return (
     <Container css={containerStyles}>
       <Box css={contentsWrapperStyles} width="100%">
@@ -116,12 +122,8 @@ export const App = () => {
           {imageData && (
             <figure css={figureStyles}>
               <img
-                src={
-                  format === "b64_json"
-                    ? `data:image/png;base64,${imageData}`
-                    : imageData
-                }
-                alt="Received Data"
+                src={replaceImageSource}
+                alt="生成された画像"
                 width={imageSize}
                 height={imageSize}
               />
